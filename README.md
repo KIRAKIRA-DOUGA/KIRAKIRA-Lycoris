@@ -14,20 +14,6 @@
 [文档地址](https://lin-xin.github.io/example/vuems-doc/)
 [English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
 
-## 赞助商
-
-### 好问
-
-[<img src="https://static.bestqa.net/logo/bestqa_haowen.png" width="220" height="100">](https://www.bestqa.net/home/index.html)
-
-专业问卷服务，一对一客服，按需定制
-
-## 支持作者
-
-请作者喝杯咖啡吧！(微信号：linxin_20)
-
-![微信扫一扫](https://lin-xin.github.io/images/weixin.jpg)
-
 ## 前言
 
 该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统开发。基于 Vue3 + pinia + typescript，引用 Element Plus 组件库，方便开发。实现逻辑简单，适合外包项目，快速交付。
