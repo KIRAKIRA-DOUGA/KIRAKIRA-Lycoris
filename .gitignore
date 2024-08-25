@@ -2,8 +2,10 @@
 
 # Build dirs
 dist
+dist-ssr
 .output
 .gen
+*.local
 
 # Node dependencies
 node_modules
@@ -11,11 +13,11 @@ node_modules
 # Log files
 logs
 *.log
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-lerna-debug.log
-.pnpm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # macOS
 .DS_Store

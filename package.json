@@ -1,0 +1,29 @@
+{
+	"name": "kirakira-lycoris",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc -b && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"pinia": "^2.2.2",
+		"vue": "^3.4.38"
+	},
+	"devDependencies": {
+		"@stylistic/eslint-plugin": "^1.8.1",
+		"@types/eslint": "^8.56.11",
+		"@vitejs/plugin-vue": "^5.1.2",
+		"eslint": "^8.57.0",
+		"eslint-plugin-vue": "^9.27.0",
+		"globals": "^15.9.0",
+		"typescript": "^5.5.4",
+		"typescript-eslint": "^7.18.0",
+		"unplugin-auto-import": "^0.17.8",
+		"unplugin-vue-components": "^0.22.12",
+		"vite": "^5.4.2",
+		"vite-tsconfig-paths": "^5.0.1",
+		"vue-tsc": "^2.0.29"
+	}
+}
