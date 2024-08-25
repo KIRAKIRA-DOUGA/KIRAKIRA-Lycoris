@@ -12,6 +12,14 @@ export default defineConfig({
 			imports: [
 				"vue",
 			],
+			dirs: [
+				"./src/components/**",
+				"./src/composables",
+				"./src/utils",
+				"./src/contexts",
+				"./src/stores",
+				"./src/classes",
+			],
 			dts: "./src/types/auto-imports.d.ts",
 			defaultExportByFilename: false,
 		}),
