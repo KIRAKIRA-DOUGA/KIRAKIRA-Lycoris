@@ -47,7 +47,9 @@
 			"utils/*": ["src/utils/*"],
 		},
 		"types": [
+			"vite/client",
 			"naive-ui/volar",
+			"unplugin-vue-router/client",
 		],
 	}
 }
