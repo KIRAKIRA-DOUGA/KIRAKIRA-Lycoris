@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto eol=lf
+
+# source code
+*.js text eol=lf linguist-vendored
+*.cjs text eol=lf linguist-vendored
+*.mjs text eol=lf linguist-vendored
+*.htm text eol=lf linguist-vendored
+*.html text eol=lf linguist-vendored

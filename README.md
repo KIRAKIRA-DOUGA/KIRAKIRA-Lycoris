@@ -1,3 +1,3 @@
 # KIRAKIRA-Lycoris
 
-KIRAKIRA's back-stage management
+KIRAKIRA's console
