@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { NThemeEditor } from "naive-ui";
 	import menuOptions from "./menu";
+	import "/src/assets/styles/tailwind.css";
 
 	const defaultExpandedKeys = menuOptions.map(option => option.key!);
 	const { theme, themeOverrides } = useOsTheme();
@@ -9,7 +10,7 @@
 <template>
 	<NConfigProvider :theme :themeOverrides>
 		<NThemeEditor>
-			<NFlex vertical :style="{ gap: 0, height: '100dvh' }">
+			<NFlex vertical class="gap-0 h-dvh">
 				<NLayoutHeader>
 					<NH2>KIRAKIRA-Lycoris</NH2>
 				</NLayoutHeader>
@@ -37,3 +38,9 @@
 		</NThemeEditor>
 	</NConfigProvider>
 </template>
+
+<style>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+</style>

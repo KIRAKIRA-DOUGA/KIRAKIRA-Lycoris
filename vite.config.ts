@@ -4,6 +4,8 @@ import components from "unplugin-vue-components/vite";
 import vueRouter from "unplugin-vue-router/vite";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -30,6 +32,14 @@ export default defineConfig({
 		components(),
 		tsconfigPaths(),
 	],
+	css: {
+		postcss: {
+			plugins: [
+				tailwindcss,
+				autoprefixer,
+			],
+		},
+	},
 	build: {
 		target: "ESNext",
 		assetsInlineLimit: 200,

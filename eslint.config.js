@@ -276,9 +276,6 @@ export default [
 				script: {
 					lang: ["ts", "tsx"],
 				},
-				style: {
-					lang: "scss",
-				},
 				i18n: {
 					lang: "json5",
 				},
