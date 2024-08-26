@@ -29,7 +29,9 @@ export default defineConfig({
 			dts: "./src/types/auto-imports.d.ts",
 			defaultExportByFilename: false,
 		}),
-		components(),
+		components({
+			dts: "./src/types/auto-components.d.ts",
+		}),
 		tsconfigPaths(),
 	],
 	css: {
