@@ -1,10 +1,10 @@
 <script setup lang="ts">
 	import { NThemeEditor } from "naive-ui";
 	import menuOptions from "./menu";
-	import "/src/assets/styles/tailwind.css";
 
 	const defaultExpandedKeys = menuOptions.map(option => option.key!);
 	const { theme, themeOverrides } = useOsTheme();
+	const routePath = computed(() => location.pathname);
 </script>
 
 <template>
@@ -27,6 +27,7 @@
 							:collapsedIconSize="22"
 							:options="menuOptions"
 							:defaultExpandedKeys
+							:defaultValue="routePath"
 						/>
 					</NLayoutSider>
 					<NLayoutContent>

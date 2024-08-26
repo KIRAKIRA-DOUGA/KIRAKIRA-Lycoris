@@ -16,7 +16,7 @@ const menu: MenuItem[] = [
 	{
 		label: "仪表盘",
 		to: "/",
-		key: "dashboard",
+		key: "",
 		icon: DashboardRound,
 	},
 	{
@@ -53,11 +53,11 @@ const menu: MenuItem[] = [
 const menuOptions = (() => {
 	function getMenuOptions({ label, to, key, icon, children }: MenuItem, parentKeys: string[] = []): MenuOption {
 		const Icon = icon as () => JSX.Element;
-		const keys = [...parentKeys, key];
-		if (!children) to ??= "/" + keys.join("/");
+		const keys = [...parentKeys, key], keysRoute = "/" + keys.join("/");
+		if (!children) to ??= keysRoute;
 		const menuOption: MenuOption = {
 			label: () => to != null ? <RouterLink to={to}>{label}</RouterLink> : label,
-			key,
+			key: keysRoute,
 			icon: () => <NIcon><Icon /></NIcon>,
 			children: children ? children.map(item => getMenuOptions(item, keys)) : undefined,
 		};
