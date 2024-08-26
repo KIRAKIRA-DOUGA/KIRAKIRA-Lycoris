@@ -41,6 +41,8 @@ export default defineConfig({
 	},
 	esbuild: {
 		keepNames: true, // When enabled, not only keep the class names, but also unexpectedly keep the function names.
+		jsxFactory: "h",
+		jsxFragment: "Fragment",
 	},
 	assetsInclude: [
 		"**/*.cur",

@@ -24,6 +24,9 @@ importers:
       '@types/eslint':
         specifier: ^8.56.11
         version: 8.56.11
+      '@vicons/material':
+        specifier: ^0.12.0
+        version: 0.12.0
       '@vitejs/plugin-vue':
         specifier: ^5.1.2
         version: 5.1.2(vite@5.4.2)(vue@3.4.38(typescript@5.5.4))
@@ -525,6 +528,9 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+
+  '@vicons/material@0.12.0':
+    resolution: {integrity: sha512-chv1CYAl8P32P3Ycwgd5+vw/OFNc2mtkKdb1Rw4T5IJmKy6GVDsoUKV3N2l208HATn7CCQphZtuPDdsm7K2kmA==}
 
   '@vitejs/plugin-vue@5.1.2':
     resolution: {integrity: sha512-nY9IwH12qeiJqumTCLJLE7IiNx7HZ39cbHaysEUd+Myvbz9KAqd2yq+U01Kab1R/H1BmiyM2ShTYlNH32Fzo3A==}
@@ -1839,6 +1845,8 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@vicons/material@0.12.0': {}
 
   '@vitejs/plugin-vue@5.1.2(vite@5.4.2)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
