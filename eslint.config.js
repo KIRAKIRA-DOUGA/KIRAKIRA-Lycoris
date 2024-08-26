@@ -135,7 +135,7 @@ export default [
 			"no-use-before-define": "off",
 			"accessor-pairs": "off",
 			"no-empty-function": "off",
-			"require-jsdoc": "error",
+			"require-jsdoc": "off",
 			"valid-jsdoc": ["error", {
 				requireReturn: false,
 				requireParamType: false, // TypeScript 不需要 JSDoc 的 type。

@@ -2,45 +2,69 @@ import { BlockRound, DashboardRound, FormatListBulletedRound, ManageAccountsRoun
 import { NIcon, type MenuOption } from "naive-ui";
 import type { Component } from "vue";
 import { RouterLink } from "vue-router";
+import type { JSX } from "vue/jsx-runtime";
 
-const renderIcon = (Icon: Component) => () => <NIcon>{h(Icon)}</NIcon>;
-const link = (label: string, to?: string) => () => to ? <RouterLink to={to}>{label}</RouterLink> : label;
+interface MenuItem {
+	label: string;
+	to?: string;
+	key: string;
+	icon: Component;
+	children?: MenuItem[];
+}
 
-const menuOptions = [
+const menu: MenuItem[] = [
 	{
-		label: link("仪表盘", "/"),
+		label: "仪表盘",
+		to: "/",
 		key: "dashboard",
-		icon: renderIcon(DashboardRound),
+		icon: DashboardRound,
 	},
 	{
 		label: "视频",
 		key: "video",
-		icon: renderIcon(VideoLibraryRound),
+		icon: VideoLibraryRound,
 		children: [
 			{
-				label: link("视频管理", "/video/manager"),
+				label: "视频管理",
 				key: "manager",
-				icon: renderIcon(VideoSettingsRound),
+				icon: VideoSettingsRound,
 			},
 		],
 	},
 	{
 		label: "用户",
 		key: "user",
-		icon: renderIcon(ManageAccountsRound),
+		icon: ManageAccountsRound,
 		children: [
 			{
-				label: link("用户列表", "/user/list"),
+				label: "用户列表",
 				key: "list",
-				icon: renderIcon(FormatListBulletedRound),
+				icon: FormatListBulletedRound,
 			},
 			{
-				label: link("用户封禁", "/user/block"),
+				label: "用户封禁",
 				key: "block",
-				icon: renderIcon(BlockRound),
+				icon: BlockRound,
 			},
 		],
-	} as MenuOption,
-] as MenuOption[];
+	},
+];
+
+const menuOptions = (() => {
+	function getMenuOptions({ label, to, key, icon, children }: MenuItem, parentKeys: string[] = []): MenuOption {
+		const Icon = icon as () => JSX.Element;
+		const keys = [...parentKeys, key];
+		if (!children) to ??= "/" + keys.join("/");
+		const menuOption: MenuOption = {
+			label: () => to != null ? <RouterLink to={to}>{label}</RouterLink> : label,
+			key,
+			icon: () => <NIcon><Icon /></NIcon>,
+			children: children ? children.map(item => getMenuOptions(item, keys)) : undefined,
+		};
+		return menuOption;
+	}
+
+	return menu.map(item => getMenuOptions(item));
+})();
 
 export default menuOptions;
