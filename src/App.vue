@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { NThemeEditor } from "naive-ui";
 	import menuOptions from "./menu";
-
+	import { LogOutRound } from "@vicons/material";
 	const defaultExpandedKeys = menuOptions.map(option => option.key!);
 	const { theme, themeOverrides } = useOsTheme();
 	const routePath = computed(() => location.pathname);
@@ -11,8 +11,20 @@
 	<NConfigProvider :theme :themeOverrides>
 		<NThemeEditor>
 			<NFlex vertical class="gap-0 h-dvh">
-				<NLayoutHeader>
-					<NH2>KIRAKIRA-Lycoris</NH2>
+				<NLayoutHeader class="px-6 h-16 flex items-center justify-between" bordered>
+					<Logo />
+					<NFlex class="items-center">
+						<NFlex class="items-center gap-1.5">
+							<NAvatar round :size="20" />
+							<span>昵称</span>
+							<span class="text-slate-500">@用户名</span>
+						</NFlex>
+						<NButton quaternary circle>
+							<template #icon>
+								<NIcon><LogOutRound /></NIcon>
+							</template>
+						</NButton>
+					</NFlex>
 				</NLayoutHeader>
 				<NLayout hasSider>
 					<NLayoutSider
