@@ -2,9 +2,14 @@
 	import { NThemeEditor } from "naive-ui";
 	import menuOptions from "./menu";
 	import { LogOutRound } from "@vicons/material";
+	import { getSelfUserInfo } from "./api/User/UserController";
 	const defaultExpandedKeys = menuOptions.map(option => option.key!);
 	const { theme, themeOverrides } = useOsTheme();
 	const routePath = computed(() => location.pathname);
+
+	const selfUserInfoStore = useSelfUserInfoStore();
+
+	getSelfUserInfo();
 </script>
 
 <template>
@@ -16,8 +21,8 @@
 					<NFlex class="items-center">
 						<NFlex class="items-center gap-1.5">
 							<NAvatar round :size="20" />
-							<span>昵称</span>
-							<span class="text-slate-500">@用户名</span>
+							<span>{{ selfUserInfoStore.userNickname }}</span>
+							<span class="text-slate-500">@{{ selfUserInfoStore.username }}</span>
 						</NFlex>
 						<NButton quaternary circle>
 							<template #icon>

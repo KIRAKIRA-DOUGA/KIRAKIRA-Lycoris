@@ -3,7 +3,29 @@
 		msg: string;
 	}>();
 
+	const selfUserInfoStore = useSelfUserInfoStore();
+
 	const count = ref(0);
+	const email = ref("");
+	const password = ref("");
+
+	/**
+	 * 登录
+	 */
+	async function requestLogin() {
+		if (!email && !password) {
+			console.error("请输入邮箱和密码来登录");
+			alert("请输入邮箱和密码来登录");
+		}
+
+		const passwordHash = await generateHash(password.value);
+		const userLoginRequest = {
+			email: email.value,
+			passwordHash,
+		};
+
+		await userLogin(userLoginRequest);
+	}
 </script>
 
 <template>
@@ -26,6 +48,12 @@
 		<a href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support" target="_blank">Vue Docs Scaling up Guide</a>.
 	</p>
 	<p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+
+	<div v-if="!selfUserInfoStore.isLogined">
+		<input class="border border-blue-500" type="text" placeholder="邮箱" v-model="email" />
+		<input class="border border-blue-500" type="password" placeholder="密码" v-model="password" />
+		<div @click="requestLogin">登录</div>
+	</div>
 </template>
 
 <style scoped>

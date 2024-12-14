@@ -1,4 +1,4 @@
-import { BlockRound, DashboardRound, FormatListBulletedRound, ManageAccountsRound, VideoLibraryRound, VideoSettingsRound } from "@vicons/material";
+import { KeyRound, BlockRound, DashboardRound, FormatListBulletedRound, ManageAccountsRound, VideoLibraryRound, VideoSettingsRound } from "@vicons/material";
 import { NIcon, type MenuOption } from "naive-ui";
 import type { Component } from "vue";
 import { RouterLink } from "vue-router";
@@ -47,6 +47,12 @@ const menu: MenuItem[] = [
 				icon: BlockRound,
 			},
 		],
+	},
+	{
+		label: "预生产环境密钥",
+		to: "/stg-secret",
+		key: "stg-secret",
+		icon: KeyRound,
 	},
 ];
 
