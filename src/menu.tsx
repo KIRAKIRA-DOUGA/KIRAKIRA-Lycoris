@@ -17,31 +17,58 @@ const menu: MenuItem[] = [
 		icon: "dashboard",
 	},
 	{
+		label: "用户",
+		key: "user",
+		icon: "group",
+		children: [
+			{
+				label: "用户管理",
+				key: "manage",
+				icon: "manageAccounts",
+			},
+			{
+				label: "最近更改",
+				key: "recent",
+				icon: "history",
+			},
+			{
+				label: "用户封禁",
+				key: "block",
+				icon: "block",
+			},
+		],
+	},
+	{
 		label: "视频",
 		key: "video",
 		icon: "videoLibrary",
 		children: [
 			{
 				label: "视频管理",
-				key: "manager",
+				key: "manage",
 				icon: "videoSettings",
+			},
+			{
+				label: "审核视频",
+				key: "pendingReview",
+				icon: "approval",
 			},
 		],
 	},
 	{
-		label: "用户",
-		key: "user",
-		icon: "manageAccounts",
+		label: "标签",
+		key: "tag",
+		icon: "sell",
 		children: [
 			{
-				label: "用户列表",
-				key: "list",
-				icon: "formatListBulleted",
+				label: "标签管理",
+				key: "manage",
+				icon: "sell",
 			},
 			{
-				label: "用户封禁",
-				key: "block",
-				icon: "block",
+				label: "最近更改",
+				key: "recent",
+				icon: "history",
 			},
 		],
 	},
