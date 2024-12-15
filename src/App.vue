@@ -4,7 +4,6 @@
 	import { getSelfUserInfo } from "./api/User/UserController";
 	const defaultExpandedKeys = menuOptions.map(option => option.key!);
 	const { theme, themeOverrides } = useOsTheme();
-	const routePath = computed(() => location.pathname);
 
 	const selfUserInfoStore = useSelfUserInfoStore();
 
@@ -43,7 +42,7 @@
 							:collapsedIconSize="22"
 							:options="menuOptions"
 							:defaultExpandedKeys
-							:defaultValue="routePath"
+							:value="$route.path"
 						/>
 					</NLayoutSider>
 					<NLayoutContent>
