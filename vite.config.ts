@@ -68,7 +68,7 @@ export default defineConfig(({ mode }) => {
 			https: isDevelopment ? {
 				cert: fs.readFileSync("./ssl/cert.pem"),
 				key: fs.readFileSync("./ssl/key.pem"),
-			} : false,
+			} : undefined,
 		},
 	};
 });
