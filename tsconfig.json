@@ -46,6 +46,9 @@
 			"stores/*": ["src/stores/*"],
 			"types/*": ["src/types/*"],
 			"utils/*": ["src/utils/*"],
+			"styles/*": ["src/styles/*"],
+			"api/*": ["src/api/*"],
+			"ssl/*": ["src/ssl/*"],
 		},
 		"types": [
 			"vite/client",

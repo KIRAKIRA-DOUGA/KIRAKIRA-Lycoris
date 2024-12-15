@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { routes } from "vue-router/auto-routes";
 import { createPinia } from "pinia";
 import App from "./App.vue";
+import "styles/global.css";
 
 const router = createRouter({ history: createWebHistory(), routes });
 router.beforeEach(async to => {

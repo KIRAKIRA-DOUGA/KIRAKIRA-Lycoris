@@ -1,5 +1,5 @@
-import { GET, POST } from "../tools/fetch";
-import getCorrectUri from "../tools/getCorrectUri";
+import { GET, POST } from "api/tools/fetch";
+import getCorrectUri from "api/tools/getCorrectUri";
 import { GetSelfUserInfoRequestDto, GetSelfUserInfoResponseDto, CheckUserTokenResponseDto, UserLogoutResponseDto, UserLoginRequestDto, UserLoginResponseDto } from "./UserControllerDto";
 
 const BACK_END_URL = getCorrectUri();

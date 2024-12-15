@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
 	const isDevelopment = mode === "development";
 	return {
 		plugins: [
+			tsconfigPaths(),
 			vueRouter({
 				dts: "./src/types/auto-router.d.ts",
 			}),
@@ -36,7 +37,6 @@ export default defineConfig(({ mode }) => {
 			components({
 				dts: "./src/types/auto-components.d.ts",
 			}),
-			tsconfigPaths(),
 		],
 		css: {
 			postcss: {
@@ -44,6 +44,9 @@ export default defineConfig(({ mode }) => {
 					tailwindcss,
 					autoprefixer,
 				],
+			},
+			modules: {
+				localsConvention: "camelCaseOnly",
 			},
 		},
 		build: {
