@@ -1,4 +1,4 @@
-import { NIcon, type MenuOption } from "naive-ui";
+import type { MenuOption } from "naive-ui";
 import { RouterLink } from "vue-router";
 
 interface MenuItem {
@@ -87,7 +87,7 @@ const menuOptions = (() => {
 		const menuOption: MenuOption = {
 			label: () => to != null ? <RouterLink to={to}>{label}</RouterLink> : label,
 			key: keysRoute,
-			icon: () => <NIcon><Icon name={icon} /></NIcon>,
+			icon: () => <Icon name={icon} />,
 			children: children ? children.map(item => getMenuOptions(item, keys)) : undefined,
 		};
 		return menuOption;
