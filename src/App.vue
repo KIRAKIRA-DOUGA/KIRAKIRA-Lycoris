@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import { NThemeEditor } from "naive-ui";
 	import menuOptions from "./menu";
-	import { LogOutRound } from "@vicons/material";
 	import { getSelfUserInfo } from "./api/User/UserController";
 	const defaultExpandedKeys = menuOptions.map(option => option.key!);
 	const { theme, themeOverrides } = useOsTheme();
@@ -26,7 +25,7 @@
 						</NFlex>
 						<NButton quaternary circle>
 							<template #icon>
-								<NIcon><LogOutRound /></NIcon>
+								<NIcon><Icon name="logOut" /></NIcon>
 							</template>
 						</NButton>
 					</NFlex>
