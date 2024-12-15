@@ -11,10 +11,10 @@
 		},
 		{
 			"type": "npm",
-			"script": "dev",
+			"script": "dev-local",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: dev",
+			"label": "npm: dev-local",
 			"detail": "vite"
 		}
 	]

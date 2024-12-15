@@ -3,5 +3,5 @@
 </script>
 
 <template>
-	<p>用户列表 TODO</p>
+	<p>用户管理列表 TODO</p>
 </template>

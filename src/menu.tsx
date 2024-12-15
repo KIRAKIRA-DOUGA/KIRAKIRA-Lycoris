@@ -50,7 +50,7 @@ const menu: MenuItem[] = [
 			},
 			{
 				label: "审核视频",
-				key: "pendingReview",
+				key: "pending-review",
 				icon: "approval",
 			},
 		],
@@ -71,6 +71,11 @@ const menu: MenuItem[] = [
 				icon: "history",
 			},
 		],
+	},
+	{
+		label: "预生产环境密钥",
+		key: "stg-secret",
+		icon: "key",
 	},
 ];
 
