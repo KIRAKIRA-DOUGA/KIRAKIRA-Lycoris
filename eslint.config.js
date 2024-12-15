@@ -406,6 +406,7 @@ export default [
 			"node_modules/*",
 			".nuxt/*",
 			"proto/*",
+			"src/types/auto-*.d.ts",
 		],
 	},
 ];
