@@ -1,4 +1,5 @@
 import * as MaterialIcons from "@vicons/material";
+import { NIcon } from "naive-ui";
 
 const capitalize = (name: string) => name[0].toUpperCase() + name.slice(1);
 
@@ -8,5 +9,10 @@ export default function Icon({ name, style = "round" }: {
 	/** 图标样式：填充、轮廓、圆润、双色、锐利。默认为圆润。 */
 	style?: MaterialIcon.Styles;
 }) {
-	return h(MaterialIcons[(capitalize(name) + capitalize(style)) as never]);
+	const Icon = MaterialIcons[(capitalize(name) + capitalize(style)) as never] as () => JSX.Element;
+	return (
+		<NIcon>
+			<Icon />
+		</NIcon>
+	);
 }

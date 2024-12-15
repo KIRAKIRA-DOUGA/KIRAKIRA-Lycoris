@@ -20,7 +20,7 @@
 						</NFlex>
 						<NButton quaternary circle>
 							<template #icon>
-								<NIcon><Icon name="logOut" /></NIcon>
+								<Icon name="logOut" />
 							</template>
 						</NButton>
 					</NFlex>
