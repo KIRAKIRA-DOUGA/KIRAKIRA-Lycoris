@@ -64,10 +64,10 @@
 			title: "操作",
 			key: "actions",
 			render: row => (
-				<>
+				<Fragment>
 					<NButton strong secondary size="small" class="mie-2" onClick={() => openEditRoleModal(row)}>编辑</NButton>
 					<NButton strong secondary size="small" type="warning" onClick={() => openDeleteRoleModal(row.roleName ?? "")}>删除</NButton>
-				</>
+				</Fragment>
 			),
 		},
 	];
