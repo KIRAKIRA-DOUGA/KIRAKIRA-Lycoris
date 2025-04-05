@@ -161,9 +161,9 @@ export type UserLabel = {
 /**
  * 用户的关联账户
  */
-export type UserLinkAccounts = {
-	/** 关联账户类型 - 例："X" */
-	accountType: string;
+export type UserLinkedAccounts = {
+	/** 关联账户的平台 - 例："X" */
+	platformId: string;
 	/** 关联账户唯一标识 */
 	accountUniqueId: string;
 };
@@ -201,7 +201,7 @@ export type UpdateOrCreateUserInfoRequestDto = {
 	/** 用户主页 Markdown */
 	userProfileMarkdown?: string;
 	/** 用户的关联账户 */
-	userLinkAccounts?: UserLinkAccounts[];
+	userLinkedAccounts?: UserLinkedAccounts[];
 	/** 用户的关联网站 */
 	userWebsite?: UserWebsite;
 };
@@ -307,6 +307,13 @@ export type GetUserInfoByUidResponseDto = {
 		userCreateDateTime?: number;
 		/** 用户的角色 */
 		roles?: string[];
+		/** 是否正在关注该用户 */
+		isFollowing: boolean;
+		/**
+		 * 查询的用户是否是自己。
+		 * 如果该字段的值为 true，则通常意味着发生了错误的请求，因为有专用的接口用于查询用户自己的信息。
+		 */
+		isSlef: boolean;
 	};
 };
 
@@ -347,13 +354,23 @@ export type GetUserAvatarUploadSignedUrlResponseDto = {
 };
 
 /**
- * 用户关联账户的隐私设置
+ * 用户隐私数据可见性设置
  */
-type UserLinkAccountsPrivacySettingDto = {
-	/** 关联账户类型 - 非空 - 例："X" */
-	accountType: string;
+type UserPrivaryVisibilitiesSettingDto = {
+	/** 用户隐私数据项的 ID - 非空 - 例：'birthday', 'follow', 'fans' */
+	privaryId: string;
 	/** 显示方式 - 非空 - 允许的值有：{public: 公开, following: 仅关注, private: 隐藏} */
-	privacyType: "public" | "following" | "private";
+	visibilitiesType: "public" | "following" | "private";
+};
+
+/**
+ * 用户关联平台的隐私可见性设置
+ */
+type UserLinkedAccountsVisibilitiesSettingDto = {
+	/** 关联账户类型 - 非空 - 例："X" */
+	platformId: string;
+	/** 显示方式 - 非空 - 允许的值有：{public: 公开, following: 仅关注, private: 隐藏} */
+	visibilitiesType: "public" | "following" | "private";
 };
 
 /**
@@ -400,8 +417,10 @@ export type BasicUserSettingsDto = {
 	flatAppearanceMode?: boolean;
 	/** 用户关联网站的隐私设置 - 允许的值有：{public: 公开, following: 仅关注, private: 隐藏} */
 	userWebsitePrivacySetting?: "public" | "following" | "private";
+	/** 用户隐私数据可见性设置 */
+	userPrivaryVisibilitiesSetting?: UserPrivaryVisibilitiesSettingDto[];
 	/** 用户关联账户的隐私设置 */
-	userLinkAccountsPrivacySetting?: UserLinkAccountsPrivacySettingDto[];
+	userLinkedAccountsVisibilitiesSetting?: UserLinkedAccountsVisibilitiesSettingDto[];
 };
 
 /**
@@ -950,6 +969,26 @@ export type CheckUserHave2FAResponseDto = {
 	type?: "email" | "totp";
 	/** 如果存在且结果为 totp，则返回 2FA 的创建时间 */
 	totpCreationDateTime?: number;
+	/** 附加的文本消息 */
+	message?: string;
+};
+
+/**
+ * 根据 UUID 校验用户是否存在的请求载荷
+ */
+export type CheckUserExistsByUuidRequestDto = {
+	/** 用户的 UUID */
+	uuid: string;
+};
+
+/**
+ * 根据 UUID 校验用户是否存在的请求响应
+ */
+export type CheckUserExistsByUuidResponseDto = {
+	/** 执行结果 */
+	success: boolean;
+	/** 用户是否已存在 */
+	exists: boolean;
 	/** 附加的文本消息 */
 	message?: string;
 };

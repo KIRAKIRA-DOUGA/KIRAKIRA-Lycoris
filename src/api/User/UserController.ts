@@ -27,16 +27,7 @@ export const getSelfUserInfo = async (getSelfUserInfoRequest?: GetSelfUserInfoRe
 		if (usePinia) {
 			const selfUserInfoStore = useSelfUserInfoStore();
 			selfUserInfoStore.isLogined = true;
-			selfUserInfoStore.uid = selfUserInfoResult.uid;
-			selfUserInfoStore.userCreateDateTime = selfUserInfoResult.userCreateDateTime ?? 0;
-			selfUserInfoStore.roles = selfUserInfoResult.roles ?? ["user"];
-			selfUserInfoStore.userEmail = selfUserInfoResult.email ?? "";
-			selfUserInfoStore.userAvatar = selfUserInfoResult.avatar || "";
-			selfUserInfoStore.username = selfUserInfoResult.username || "Anonymous"; // TODO: 使用多语言，为未设置用户名的用户提供国际化的缺省用户名
-			selfUserInfoStore.userNickname = selfUserInfoResult.userNickname || ""; // TODO: 使用多语言，为未设置用户昵称的用户提供国际化的缺省用户昵称
-			selfUserInfoStore.gender = selfUserInfoResult.gender || "";
-			selfUserInfoStore.signature = selfUserInfoResult.signature || "";
-			selfUserInfoStore.tags = selfUserInfoResult.label?.map(label => label.labelName) || [];
+			selfUserInfoStore.userInfo = selfUserInfoResult ?? { };
 		}
 	} else
 		await userLogout(usePinia);
@@ -64,16 +55,7 @@ export async function userLogout(usePinia: boolean = true): Promise<UserLogoutRe
 		if (usePinia) {
 			const selfUserInfoStore = useSelfUserInfoStore();
 			selfUserInfoStore.isLogined = false;
-			selfUserInfoStore.uid = undefined;
-			selfUserInfoStore.userCreateDateTime = 0;
-			selfUserInfoStore.roles = ["user"];
-			selfUserInfoStore.userEmail = "";
-			selfUserInfoStore.userAvatar = "";
-			selfUserInfoStore.username = "";
-			selfUserInfoStore.userNickname = "";
-			selfUserInfoStore.gender = "";
-			selfUserInfoStore.signature = "";
-			selfUserInfoStore.tags = [];
+			selfUserInfoStore.userInfo = {};
 		}
 	} else
 		console.error("ERROR", "用户登出失败"); // TODO: 使用多语言

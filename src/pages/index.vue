@@ -71,7 +71,7 @@
 		</div>
 		<div v-else>
 			<p>你已登入</p>
-			<p>你的角色是：{{ selfUserInfoStore.roles }}</p>
+			<p>你的角色是：{{ selfUserInfoStore.userInfo.roles }}</p>
 			<NButton type="primary" round attrType="button" @click="logout">登出</NButton>
 		</div>
 	</div>
