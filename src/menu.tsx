@@ -1,13 +1,13 @@
-import type { MenuOption } from "naive-ui";
-import { RouterLink } from "vue-router";
-
 interface MenuItem {
 	label: string;
 	to?: string;
 	key: string;
 	icon: MaterialIcon.Names;
+	shown?: boolean;
 	children?: MenuItem[];
 }
+
+const selfUserInfo = noBackend ? null! : await getSelfUserInfo(undefined, false); // 仅获取数据，不修改 pinia
 
 const menu: MenuItem[] = [
 	{
@@ -50,7 +50,7 @@ const menu: MenuItem[] = [
 			},
 			{
 				label: "审核视频",
-				key: "pendingReview",
+				key: "pending-review",
 				icon: "approval",
 			},
 		],
@@ -72,16 +72,51 @@ const menu: MenuItem[] = [
 			},
 		],
 	},
+	{
+		label: "RBAC 管理",
+		key: "rbac",
+		icon: "shield",
+		shown: checkUserRole(["root", "developer"], selfUserInfo),
+		children: [
+			{
+				label: "API 路径",
+				key: "api-path",
+				icon: "api",
+			},
+			{
+				label: "身份",
+				key: "role",
+				icon: "badge",
+			},
+			{
+				label: "用户身份",
+				key: "user-roles",
+				icon: "person",
+			},
+		],
+	},
+	{
+		label: "预生产环境密钥",
+		key: "stg-secret",
+		icon: "key",
+		shown: checkUserRole(["root", "developer"], selfUserInfo),
+	},
+	{
+		label: "关于",
+		key: "about",
+		icon: "info",
+	},
 ];
 
 const menuOptions = (() => {
-	function getMenuOptions({ label, to, key, icon, children }: MenuItem, parentKeys: string[] = []): MenuOption {
+	function getMenuOptions({ label, to, key, icon, shown, children }: MenuItem, parentKeys: string[] = []): MenuOption {
 		const keys = [...parentKeys, key], keysRoute = "/" + keys.join("/");
 		if (!children) to ??= keysRoute;
 		const menuOption: MenuOption = {
 			label: () => to != null ? <RouterLink to={to}>{label}</RouterLink> : label,
 			key: keysRoute,
 			icon: () => <Icon name={icon} />,
+			show: shown,
 			children: children ? children.map(item => getMenuOptions(item, keys)) : undefined,
 		};
 		return menuOption;

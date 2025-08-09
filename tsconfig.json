@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"skipLibCheck": true, // FIXME: 此处忽略了所有 .d.ts 文件用于缓解构建时的报错，但这不是最佳实践。
 		"jsx": "preserve",
 		"jsxImportSource": "vue",
 		"module": "ESNext",
@@ -45,11 +46,14 @@
 			"stores/*": ["src/stores/*"],
 			"types/*": ["src/types/*"],
 			"utils/*": ["src/utils/*"],
+			"styles/*": ["src/styles/*"],
+			"api/*": ["src/api/*"],
+			"ssl/*": ["src/ssl/*"],
 		},
 		"types": [
 			"vite/client",
 			"naive-ui/volar",
 			"unplugin-vue-router/client",
 		],
-	}
+	},
 }

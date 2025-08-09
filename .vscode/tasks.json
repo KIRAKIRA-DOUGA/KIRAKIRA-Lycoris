@@ -11,11 +11,35 @@
 		},
 		{
 			"type": "npm",
-			"script": "dev",
+			"script": "dev-local",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: dev",
+			"label": "npm: dev-local",
 			"detail": "vite"
-		}
+		},
+		{
+			"type": "npm",
+			"script": "dev-nobackend",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: dev-nobackend",
+			"detail": "vite"
+		},
+		{
+			"type": "npm",
+			"script": "dev-stg-demo",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: stg-demo",
+			"detail": "vite"
+		},
+		{
+			"type": "npm",
+			"script": "dev-prod-demo",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: prod-demo",
+			"detail": "vite"
+		},
 	]
 }

@@ -1,5 +1,4 @@
 import * as MaterialIcons from "@vicons/material";
-import { NIcon } from "naive-ui";
 
 const capitalize = (name: string) => name[0].toUpperCase() + name.slice(1);
 

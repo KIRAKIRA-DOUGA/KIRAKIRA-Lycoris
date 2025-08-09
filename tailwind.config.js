@@ -6,4 +6,7 @@ export default {
 	},
 	plugins: [],
 	important: true,
+	corePlugins: {
+		container: false,
+	},
 };

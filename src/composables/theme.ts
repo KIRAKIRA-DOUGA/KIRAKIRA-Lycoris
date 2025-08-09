@@ -1,4 +1,4 @@
-import { darkTheme, lightTheme, useOsTheme as useOsThemeName } from "naive-ui";
+import { darkTheme, lightTheme, useOsTheme as useOsThemeName, type GlobalThemeOverrides } from "naive-ui";
 
 /**
  * 获取系统主题配置。
@@ -11,7 +11,7 @@ export function useOsTheme() {
 	const osTheme = computed(() => {
 		return themeName.value === "light" ? lightTheme : darkTheme;
 	});
-	const themeOverrides = computed(() => {
+	const themeOverrides = computed<GlobalThemeOverrides>(() => {
 		const NORMAL = "#F06E8E", HOVER = "#F390A9", PRESSED = "#D64D70";
 
 		return {

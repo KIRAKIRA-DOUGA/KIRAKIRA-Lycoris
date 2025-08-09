@@ -6,7 +6,7 @@ import stylistic from "@stylistic/eslint-plugin";
 import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
+/** @type {import("eslint").Linter.Config[]} */
 export default [
 	eslint.configs.recommended,
 	...tseslint.configs.recommended,
@@ -22,11 +22,9 @@ export default [
 		},
 		languageOptions: {
 			parserOptions: {
-				parser: {
-					ts: tseslint.parser,
-				},
-				sourceType: "module",
-				ecmaVersion: "latest",
+				parser: tseslint.parser,
+				jsx: true,
+				extraFileExtensions: [".vue"],
 			},
 			ecmaVersion: "latest",
 			sourceType: "module",
@@ -135,12 +133,6 @@ export default [
 			"no-use-before-define": "off",
 			"accessor-pairs": "off",
 			"no-empty-function": "off",
-			"require-jsdoc": "off",
-			"valid-jsdoc": ["error", {
-				requireReturn: false,
-				requireParamType: false, // TypeScript 不需要 JSDoc 的 type。
-				requireReturnType: false,
-			}],
 			"no-inner-declarations": "warn",
 			"no-unmodified-loop-condition": "off",
 			"no-return-assign": "off",
@@ -159,7 +151,7 @@ export default [
 				enforceForJSX: true,
 			}],
 			"@stylistic/max-statements-per-line": "off",
-			// "no-useless-assignment": "error", // TODO: ESLint 9.0 及其之后才开始支持
+			"no-useless-assignment": "off", // Vue 模板中的变量不识别。
 			"import/order": "off", // 与 VSCode 内置导入排序特性打架。
 			"import/first": "off", // 与 Vue 特性冲突。
 			"import/named": "off", // 与 TypeScript 特性冲突。
@@ -193,7 +185,6 @@ export default [
 					requireLast: false,
 				},
 			}],
-			"@typescript-eslint/semi": ["error", "always"],
 			"@typescript-eslint/no-explicit-any": "error",
 			"@typescript-eslint/no-use-before-define": ["warn", {
 				functions: false,
@@ -291,7 +282,7 @@ export default [
 			"vue/component-options-name-casing": ["error", "PascalCase"],
 			"vue/next-tick-style": ["error", "promise"],
 			"vue/padding-line-between-blocks": ["error", "always"],
-			"vue/component-tags-order": ["error", {
+			"vue/block-order": ["error", {
 				order: ["docs", ["script:not([setup])", "script[setup]"], "template", "i18n", "style[scoped]", "style[module]", "style:not([scoped]):not([module])"],
 			}],
 			"vue/no-multiple-template-root": "off",
@@ -381,7 +372,7 @@ export default [
 				message: "Use !! instead.",
 			} */],
 			"no-restricted-syntax": ["error", {
-				selector: "VariableDeclaration[kind = 'let'] > VariableDeclarator[init = null]:not([id.typeAnnotation])",
+				selector: ":not(ForOfStatement, ForInStatement) > VariableDeclaration[kind = 'let'] > VariableDeclarator[init = null]:not([id.typeAnnotation])",
 				message: "Type must be inferred at variable declaration",
 			}],
 		},
