@@ -13,6 +13,6 @@ pnpm install
 Start development server.\
 You need to run the backend service [KIRAKIRA-Rosales](https://github.com/KIRAKIRA-DOUGA/KIRAKIRA-Rosales) separately, otherwise the program will not work as expected.
 ```bash
-pnpm run dev-local
+pnpm run dev
 ```
 Then you should be able to access the development server in https://localhost:3000
