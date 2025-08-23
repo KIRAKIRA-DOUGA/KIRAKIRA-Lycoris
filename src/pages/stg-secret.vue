@@ -5,6 +5,11 @@
 
 	type StgEnvBackEndSecret = GetStgEnvBackEndSecretResponse["result"];
 	const stgEnvBackEndSecretData = ref<StgEnvBackEndSecret["envs"]>(); // 环境变量数据（对象格式）
+	const computedDotenvStgEnvBackEndSecretData = computed(() => { // 环境变量数据（.env 字符串格式）
+		return Object.entries(stgEnvBackEndSecretData.value ?? {})
+			.map(([key, value]) => `${key}="${value}"`)
+			.join("\n") + "\n\nclear";
+	});
 	const computedWindwowsStgEnvBackEndSecretData = computed(() => { // 环境变量数据（Windows Powershell 字符串格式）
 		return Object.entries(stgEnvBackEndSecretData.value ?? {})
 			.map(([key, value]) => `$env:${key}="${value}"`)
@@ -80,6 +85,7 @@
 		</NCollapse>
 		<NFlex class="mbe-4 justify-between">
 			<NFlex>
+				<NButton :secondary="secretType !== 'dotenv'" strong type="warning" @click="secretType = secretType !== 'dotenv' ? 'dotenv' : 'hidden'">{{ getShownText(secretType !== "dotenv") }} .env 格式的环境变量</NButton>
 				<NButton :secondary="secretType !== 'windows'" strong type="warning" @click="secretType = secretType !== 'windows' ? 'windows' : 'hidden'">{{ getShownText(secretType !== "windows") }} Windows PowerShell 格式的环境变量</NButton>
 				<NButton :secondary="secretType !== 'bash'" strong type="warning" @click="secretType = secretType !== 'bash' ? 'bash' : 'hidden'">{{ getShownText(secretType !== "bash") }} Bash (macOS / Linux) 格式的环境变量</NButton>
 			</NFlex>
@@ -91,6 +97,7 @@
 		</NFlex>
 
 		<NCollapseTransition :show="secretType !== 'hidden'">
+			<NCode v-if="secretType === 'dotenv'" :code="computedDotenvStgEnvBackEndSecretData" showLineNumbers language="bash" />
 			<NCode v-if="secretType === 'windows'" :code="computedWindwowsStgEnvBackEndSecretData" showLineNumbers language="powershell" />
 			<NCode v-else-if="secretType === 'bash'" :code="computedBashStgEnvBackEndSecretData" showLineNumbers language="bash" />
 		</NCollapseTransition>
