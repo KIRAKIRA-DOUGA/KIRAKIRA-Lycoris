@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	const message = useMessage();
-	const secretType = ref<"hidden" | "windows" | "bash">("hidden");
+	type SecretType = "hidden" | "dotenv" | "windows" | "bash";
+	const secretType = ref<SecretType>("hidden");
 	const getShownText = (shown: boolean) => shown ? "展示" : "隐藏";
 
 	type StgEnvBackEndSecret = GetStgEnvBackEndSecretResponse["result"];
@@ -8,7 +9,7 @@
 	const computedDotenvStgEnvBackEndSecretData = computed(() => { // 环境变量数据（.env 字符串格式）
 		return Object.entries(stgEnvBackEndSecretData.value ?? {})
 			.map(([key, value]) => `${key}="${value}"`)
-			.join("\n") + "\n\nclear";
+			.join("\n");
 	});
 	const computedWindwowsStgEnvBackEndSecretData = computed(() => { // 环境变量数据（Windows Powershell 字符串格式）
 		return Object.entries(stgEnvBackEndSecretData.value ?? {})
@@ -27,11 +28,15 @@
 	function copySecret() {
 		if (secretType.value === "hidden")
 			return;
+		else if (secretType.value === "dotenv")
+			navigator.clipboard.writeText(computedDotenvStgEnvBackEndSecretData.value).then(() => {
+				message.info("密钥已复制");
+			});
 		else if (secretType.value === "windows")
 			navigator.clipboard.writeText(computedWindwowsStgEnvBackEndSecretData.value).then(() => {
 				message.info("密钥已复制");
 			});
-		else
+		else if (secretType.value === "bash")
 			navigator.clipboard.writeText(computedBashStgEnvBackEndSecretData.value).then(() => {
 				message.info("密钥已复制");
 			});
@@ -90,15 +95,18 @@
 				<NButton :secondary="secretType !== 'bash'" strong type="warning" @click="secretType = secretType !== 'bash' ? 'bash' : 'hidden'">{{ getShownText(secretType !== "bash") }} Bash (macOS / Linux) 格式的环境变量</NButton>
 			</NFlex>
 			<NFlex>
-				<NButton :disabled="secretType === 'hidden'" strong secondary @click="copySecret"><template #icon>
-					<Icon name="contentCopy" />
-				</template>复制</NButton>
+				<NButton :disabled="secretType === 'hidden'" strong secondary @click="copySecret">
+					<template #icon>
+						<Icon name="contentCopy" />
+					</template>
+					复制
+				</NButton>
 			</NFlex>
 		</NFlex>
 
 		<NCollapseTransition :show="secretType !== 'hidden'">
 			<NCode v-if="secretType === 'dotenv'" :code="computedDotenvStgEnvBackEndSecretData" showLineNumbers language="bash" />
-			<NCode v-if="secretType === 'windows'" :code="computedWindwowsStgEnvBackEndSecretData" showLineNumbers language="powershell" />
+			<NCode v-else-if="secretType === 'windows'" :code="computedWindwowsStgEnvBackEndSecretData" showLineNumbers language="powershell" />
 			<NCode v-else-if="secretType === 'bash'" :code="computedBashStgEnvBackEndSecretData" showLineNumbers language="bash" />
 		</NCollapseTransition>
 	</div>
