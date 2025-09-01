@@ -26,7 +26,7 @@
 		username: "",
 		signature: "",
 		gender: "",
-		userBirthday: -1,
+		userBirthday: "",
 		userCreateDateTime: -1,
 		isUpdatedAfterReview: false,
 	};
@@ -257,7 +257,7 @@
 				userNickname: editUserInfoData.userNickname,
 				username: editUserInfoData.username,
 				signature: editUserInfoData.signature ?? "",
-				userBirthday: editUserInfoData.userBirthday ?? -1,
+				// userBirthday: editUserInfoData.userBirthday ?? "",
 				gender: editUserInfoData.gender,
 				isUpdatedAfterReview: editUserInfoData.isUpdatedAfterReview,
 			},
@@ -411,13 +411,14 @@
 						<NFormItem label="昵称">
 							<NInput v-model:value="editUserInfoData.userNickname" />
 						</NFormItem>
-						<NFormItem label="出生日期">
+						<!-- TUDO: 日期选择器 -->
+						<!-- <NFormItem label="出生日期">
 							<NDatePicker
 								v-model:value="editUserInfoData.userBirthday"
 								type="date"
 								style="width: 100%"
 							/>
-						</NFormItem>
+						</NFormItem> -->
 
 					</NCol>
 

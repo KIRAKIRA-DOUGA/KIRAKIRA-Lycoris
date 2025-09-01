@@ -31,7 +31,6 @@
 
 	const apiPathEls = reactive<(Element | ComponentPublicInstance)[]>([]);
 	function fixEllipsis() {
-		// eslint-disable-next-line no-restricted-syntax
 		for (let element of apiPathEls) {
 			if ("$el" in element) element = element.$el as Element;
 			if (!element?.parentElement || !(element instanceof HTMLElement)) continue;
@@ -54,7 +53,10 @@
 			key: "apiPathPermissions",
 			ellipsis: true,
 			width: "min(400px, 40dvw)",
-			render: row => row.apiPathPermissions.map(apiPath => <NTag class="mie-2" ref={el => el && apiPathEls.push(el)}>{apiPath}</NTag>),
+			render: row => {
+				apiPathEls.length = 0;
+				return row.apiPathPermissions.map(apiPath => <NTag class="mie-2" ref={el => el && apiPathEls.push(el)}>{apiPath}</NTag>);
+			},
 			className: "[&>*]:relative",
 		},
 		{
