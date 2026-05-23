@@ -15,7 +15,7 @@
 	"homepage": "https://github.com/KIRAKIRA-DOUGA/KIRAKIRA-Lycoris#readme",
 	"scripts": {
 		"dev-nobackend": "cross-env VITE_BACKEND_URI=none vite --host",
-		"dev-local": "cross-env VITE_BACKEND_URI=https://localhost:9999 vite --host",
+		"dev-local": "cross-env VITE_BACKEND_URI=https://localhost:30000 vite --host",
 		"dev-stg-demo": "cross-env VITE_BACKEND_URI=https://stg-rosales.kirafile.com vite --host",
 		"dev-prod-demo": "cross-env VITE_BACKEND_URI=https://rosales.kirakira.moe vite --host",
 		"build": "vue-tsc -b && vite build",
